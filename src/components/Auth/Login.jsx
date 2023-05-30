@@ -44,17 +44,11 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center h-[65vh] md:h-[80vh]">
-      <Box className="w-[400px] h-[500px] flex justify-center items-center ">
-        <Stack direction="column" spacing={4}>
+    <div className="flex justify-center items-center md:h-[85vh]">
+      <Box className="w-[400px] h-[550px] flex justify-center items-center md:w-[450px] ">
+        <Stack direction="column" spacing={4} className=" md:w-[550px]">
           <FormControl>
-            <Typography
-              style={{
-                marginBottom: "20px",
-                fontSize: "20px",
-                fontFamily: "Poppins",
-              }}
-            >
+            <Typography className="mb-5 text-xl font-poppins text-center ">
               Enter your Login Credentials
             </Typography>
             {/* Email */}
