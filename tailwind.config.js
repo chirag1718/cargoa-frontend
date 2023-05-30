@@ -8,6 +8,9 @@ module.exports = {
       lg: "976px",
       xl: "1440px",
     },
+    fontFamily: {
+      poppins: ["Poppins"],
+    },
     extend: {},
   },
   plugins: [require("tailwindcss")],
