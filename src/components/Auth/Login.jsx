@@ -36,7 +36,7 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("auth-token", response.data.token);
 
-      const res = response.data.user;
+      const res = response.data;
       dispatch(authActions.login(res));
       navigate("/dashboard");
     } catch (err) {

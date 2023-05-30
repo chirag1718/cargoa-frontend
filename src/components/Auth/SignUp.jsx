@@ -6,7 +6,6 @@ import {
   Button,
   FormControl,
   InputAdornment,
-  Menu,
   MenuItem,
   Stack,
   TextField,
@@ -20,6 +19,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useNavigate } from "react-router-dom";
 // redux
 import { useDispatch } from "react-redux";
+import { authActions } from "../../redux/authSlice";
 // role
 import SelectRole from "../General/SelectRole";
 
@@ -45,6 +45,9 @@ const SignUp = () => {
         role,
       });
       console.log(response);
+      const res = response.data;
+      dispatch(authActions.login(res));
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -145,7 +148,7 @@ const SignUp = () => {
             <Button
               variant="text"
               endIcon={<PersonAddIcon />}
-              // onClick={handleSignup}
+              onClick={handleSignUp}
             >
               Have an Account? Login
             </Button>
