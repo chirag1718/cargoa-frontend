@@ -6,9 +6,6 @@ const Navigation = () => {
   const handleHome = () => {
     navigate("/");
   };
-  const handleLogin = () => {
-    navigate("/login");
-  };
   const handleSignup = () => {
     navigate("/signup");
   };
@@ -24,7 +21,7 @@ const Navigation = () => {
           {!window.location.pathname.includes("login") && (
             <span
               className="font-poppins active:scale-95 cursor-pointer"
-              onClick={handleLogin}
+              onClick={handleHome}
             >
               Login
             </span>
