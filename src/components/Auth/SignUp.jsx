@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CagroaApi from "../../apis/CagroaApi";
+import { setUser } from "../../redux/actions";
 // material ui
 import {
   Box,
@@ -19,7 +20,6 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useNavigate } from "react-router-dom";
 // redux
 import { useDispatch } from "react-redux";
-import { authActions } from "../../redux/authSlice";
 // role
 import SelectRole from "../General/SelectRole";
 
@@ -46,7 +46,7 @@ const SignUp = () => {
       });
       console.log(response);
       const res = response.data;
-      dispatch(authActions.login(res));
+      dispatch(setUser(res));
       navigate("/");
     } catch (err) {
       console.log(err);

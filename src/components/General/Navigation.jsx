@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const navigate = useNavigate();
+  const userData = useSelector((state) => state.auth);
   const handleHome = () => {
     navigate("/");
   };
@@ -18,7 +20,7 @@ const Navigation = () => {
           </span>
         </div>
         <div className="hidden md:flex md:gap-10">
-          {!window.location.pathname.includes("login") && (
+          {!window.location.pathname.includes("") && (
             <span
               className="font-poppins active:scale-95 cursor-pointer"
               onClick={handleHome}

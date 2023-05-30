@@ -15,8 +15,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../redux/authSlice";
-
+import { setUser } from "../../redux/actions";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +23,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -37,7 +36,7 @@ const Login = () => {
       localStorage.setItem("auth-token", response.data.token);
 
       const res = response.data;
-      dispatch(authActions.login(res));
+      dispatch(setUser(res));
       navigate("/dashboard");
     } catch (err) {
       console.log(err);
