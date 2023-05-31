@@ -1,16 +1,27 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/actions";
+import Message from "./Dashboard/Message";
 
 const Navigation = () => {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth);
   const userType = userData?.user?.role;
+  const dispatch = useDispatch();
   const handleHome = () => {
     navigate("/");
   };
   const handleSignup = () => {
     navigate("/signup");
+  };
+
+  const handleLogout = () => {
+    const user = localStorage.removeItem("user");
+    const token = localStorage.removeItem("auth-token");
+    dispatch(logout({ user, token }));
+    navigate("/");
   };
   switch (userType) {
     case "Manufacturer":
@@ -22,16 +33,14 @@ const Navigation = () => {
                 Cargoa
               </span>
             </div>
-            <div className="hidden md:flex md:gap-10">
-              {!window.location.pathname.includes("") &&
-                !window.location.pathname.includes("signup") && (
-                  <span
-                    className="font-poppins active:scale-95 cursor-pointer"
-                    // onClick={handleHome}
-                  >
-                    Logout
-                  </span>
-                )}
+            <div className="hidden md:flex md:justify-center md:items-center md:gap-10">
+              <Message />
+              <span
+                className="font-poppins active:scale-95 cursor-pointer text-white"
+                onClick={handleLogout}
+              >
+                Logout
+              </span>
               {/* {!window.location.pathname.includes("signup") && (
                 <span
                   className="font-poppins active:scale-95 cursor-pointer"
@@ -54,15 +63,12 @@ const Navigation = () => {
               </span>
             </div>
             <div className="hidden md:flex md:gap-10">
-              {!window.location.pathname.includes("") &&
-                !window.location.pathname.includes("signup") && (
-                  <span
-                    className="font-poppins active:scale-95 cursor-pointer"
-                    // onClick={handleHome}
-                  >
-                    Logout
-                  </span>
-                )}
+              <span
+                className="font-poppins active:scale-95 cursor-pointer text-white"
+                // onClick={handleHome}
+              >
+                Logout
+              </span>
               {/* {!window.location.pathname.includes("signup") && (
                 <span
                   className="font-poppins active:scale-95 cursor-pointer"

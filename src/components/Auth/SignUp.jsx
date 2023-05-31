@@ -52,14 +52,14 @@ const SignUp = () => {
       console.log(err);
     }
   };
+
+  const handleLogin = () => {
+    navigate("/");
+  };
   return (
-    <div className="flex justify-center items-center  md:h-[85vh]">
-      <Box className="w-[400px]  h-[550px] flex justify-center items-center md:w-[450px] ">
-        <Stack
-          direction="column"
-          spacing={4}
-          className=" md:w-[550px]"
-        >
+    <div className="flex justify-center items-center  md:h-auto">
+      <Box className="w-[250px] sm:w-[400px]  h-[550px] flex justify-center items-center md:w-[450px] ">
+        <Stack direction="column" spacing={4} className=" md:w-[550px]">
           <FormControl>
             <Typography className="mb-5 text-xl font-poppins text-center ">
               Enter your Credentials
@@ -152,7 +152,7 @@ const SignUp = () => {
             <Button
               variant="text"
               endIcon={<PersonAddIcon />}
-              onClick={handleSignUp}
+              onClick={handleLogin}
             >
               Have an Account? Login
             </Button>

@@ -12,7 +12,6 @@ const Dashboard = () => {
       >
         Order Details
       </Typography>
-
       <DashboardTable />
     </div>
   );

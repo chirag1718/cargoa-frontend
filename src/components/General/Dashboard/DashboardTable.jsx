@@ -12,7 +12,7 @@ import {
 const DashboardTable = () => {
   return (
     <div className="">
-      <TableContainer className="inline-flex h-[600px] scroll-smooth border-2 w-[250px] sm:w-[300px] overflow-scroll scrollbar-hide  md:w-[750px] lg:w-[950px] xl:w-[1300px]">
+      <TableContainer className="inline-flex h-[600px] scroll-smooth border-2 w-[270px] sm:w-[450px] md:w-[720px] lg:w-[950px] xl:w-[1400px] overflow-scroll scrollbar-hide ">
         <Table>
           <TableHead>
             <TableRow>

@@ -43,9 +43,13 @@ const Login = () => {
       setError(err.message);
     }
   };
+
+  const handleSignup = () => {
+    navigate("/signup")
+  }
   return (
-    <div className="flex justify-center items-center md:h-[85vh]">
-      <Box className="w-[400px] h-[550px] flex justify-center items-center md:w-[450px] ">
+    <div className="flex justify-center items-center md:h-auto">
+      <Box className="w-[250px] sm:w-[400px] h-[550px] flex justify-center items-center md:w-[450px] ">
         <Stack direction="column" spacing={4} className=" md:w-[550px]">
           <FormControl>
             <Typography className="mb-5 text-xl font-poppins text-center ">
@@ -100,7 +104,7 @@ const Login = () => {
               variant="text"
               // className=""
               endIcon={<PersonAddIcon />}
-              // onClick={handleSignup}
+              onClick={handleSignup}
             >
               Create New Account
             </Button>
