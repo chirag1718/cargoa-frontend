@@ -36,8 +36,10 @@ const Login = () => {
       localStorage.setItem("auth-token", response.data.token);
 
       const res = response.data;
+      console.log(res);
+      const userId = res.user._id;
       dispatch(setUser(res));
-      navigate("/dashboard");
+      navigate(`/dashboard/${userId}`);
     } catch (err) {
       console.log(err);
       setError(err.message);
