@@ -9,6 +9,7 @@ const AppRoutes = () => {
   const userData = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const userType = userData?.user?.role;
+  const userId = userData?.user?._id;
   useEffect(() => {
     const user = localStorage.getItem("user");
     const token = localStorage.getItem("auth-token");
@@ -21,11 +22,15 @@ const AppRoutes = () => {
       return (
         <div>
           <Routes>
-            <Route exact path="/dashboard/:id" element={<Dashboard />} />
+            <Route
+              exact
+              path={`/dashboard/${userId}`}
+              element={<Dashboard />}
+            />
             <Route
               exact
               path="*"
-              element={<Navigate to={"/dashboard/:id"} />}
+              element={<Navigate to={`/dashboard/${userId}`} />}
             />
           </Routes>
         </div>
