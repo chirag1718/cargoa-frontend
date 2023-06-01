@@ -108,7 +108,7 @@ const Login = () => {
             >
               Create New Account
             </Button>
-            <Typography className="text-red-500 font-poppins">
+            <Typography className="flex justify-center items-center text-red-500 font-poppins">
               {error ? <>{error}</> : null}
             </Typography>
           </FormControl>
