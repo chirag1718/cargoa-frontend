@@ -1,6 +1,7 @@
 import React from "react";
 import Cards from "./Cards";
 import { Typography } from "@mui/material";
+
 const Dashboard = () => {
   return (
     // <div className="flex items-center justify-center space-y-5 flex-col">
@@ -15,8 +16,13 @@ const Dashboard = () => {
           Order Details
         </Typography>
       </div>
-      <div className="flex flex-col justify-center items-center w-[250px] h-[500px] overflow-scroll  bg-yellow-200">
+      <div className="flex flex-col rounded-t-xl md:rounded-xl w-[250px] sm:w-[450px] md:w-[700px] lg:w-[900px] xl:w-[1300px] h-[450px] overflow-scroll scrollbar-hide border-2 md:px-5">
         <Cards />
+      </div>
+      <div className="flex justify-center items-center h-16 w-[250px] gap-2 border-b-2 border-x-2 rounded-b-xl md:hidden">
+        <span className="text-lg transition-all ease-in duration-150 active:scale-95">
+          Send Request
+        </span>
       </div>
     </div>
   );

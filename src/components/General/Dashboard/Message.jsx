@@ -9,10 +9,10 @@ const Message = () => {
       <span className="flex justify-center items-center gap-2 border-white border-[1px] rounded-lg p-2 active:scale-95 cursor-pointer">
         Send Request
         <div className="">
-          <ChatBubbleOutlineIcon className="text-2xl"
-          //  onClick={handleMessage}
-           />
-
+          <ChatBubbleOutlineIcon
+            className="text-2xl"
+            //  onClick={handleMessage}
+          />
         </div>
       </span>
     </div>
