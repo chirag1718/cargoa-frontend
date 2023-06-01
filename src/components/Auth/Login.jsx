@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CargoaApi from "../../apis/CagroaApi";
+import CargoaApi from "../../apis/CargoaApi";
 import {
   Box,
   Button,
@@ -45,8 +45,8 @@ const Login = () => {
   };
 
   const handleSignup = () => {
-    navigate("/signup")
-  }
+    navigate("/signup");
+  };
   return (
     <div className="flex justify-center items-center md:h-auto">
       <Box className="w-[250px] sm:w-[400px] h-[550px] flex justify-center items-center md:w-[450px] ">

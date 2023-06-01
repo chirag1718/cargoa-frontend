@@ -21,10 +21,10 @@ const Navigation = () => {
     const user = localStorage.removeItem("user");
     const token = localStorage.removeItem("auth-token");
     dispatch(logout({ user, token }));
-    navigate("/");
+    navigate("/dashboard");
   };
   switch (userType) {
-    case "Manufacturer":
+    case "manufacturer":
       return (
         <>
           <div className="bg-black w-full h-16 text-white flex items-center justify-center mb-5 md:flex md:justify-between md:items-center md:px-10">
@@ -53,7 +53,7 @@ const Navigation = () => {
           </div>
         </>
       );
-    case "Transporter":
+    case "transporter":
       return (
         <>
           <div className="bg-black w-full h-16 text-white flex items-center  justify-center mb-5 md:flex md:justify-between md:items-center md:px-10">

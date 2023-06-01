@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CagroaApi from "../../apis/CagroaApi";
+import CargoaApi from "../../apis/CargoaApi";
 import { setUser } from "../../redux/actions";
 // material ui
 import {
@@ -37,7 +37,7 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await CagroaApi.post("/auth/register", {
+      const response = await CargoaApi.post("/auth/register", {
         firstName,
         email,
         address,
