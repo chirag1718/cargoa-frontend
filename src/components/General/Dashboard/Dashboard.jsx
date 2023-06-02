@@ -1,6 +1,7 @@
 import React from "react";
 import Cards from "./Cards";
 import { Typography } from "@mui/material";
+import TransporterTable from "./TransporterMessage";
 
 const Dashboard = () => {
   return (
@@ -16,8 +17,9 @@ const Dashboard = () => {
           Order Details
         </Typography>
       </div>
-      <div className="flex flex-wrap justify-center gap-5 md:gap-10 rounded-t-xl md:rounded-xl w-[250px] sm:w-[390px] md:w-[700px] lg:w-[900px] xl:w-[1300px] h-[450px] md:h-[500px] overflow-scroll scrollbar-hide border-2 pt-5">
+      <div className="flex flex-wrap justify-center gap-5 md:gap-10 rounded-t-xl md:rounded-xl w-[250px] sm:w-[390px] md:w-[700px] lg:w-[900px] xl:w-[1300px] h-[450px] md:h-[500px] overflow-scroll scrollbar-hide border-2 pty-5">
         <Cards />
+        <TransporterTable />
       </div>
       <div className="flex justify-center items-center h-16 w-[250px] sm:w-[450px] gap-2 border-b-2 border-x-2 rounded-b-xl md:hidden">
         <span className="text-lg transition-all ease-in duration-150 active:scale-95">
