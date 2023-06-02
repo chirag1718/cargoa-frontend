@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 const Cards = () => {
   const userData = useSelector((state) => state.auth);
   const userId = userData.user._id;
-  console.log(userId);
   const [selectedItem, setSelectedItem] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
@@ -24,119 +23,50 @@ const Cards = () => {
       {selectedItem &&
         selectedItem.map((item) => {
           return (
-            <div className="flex flex-wrap justify-center md:justify-start items-center md:flex-row my-4 gap-5">
+            <div
+              className="flex flex-wrap justify-center md:justify-start items-center md:flex-row "
+              key={item.id}
+            >
               <div className="h-[200px]">
                 <Card
-                  className="w-[220px] h-[200px] rounded-lg"
-                  elevation={3}
-                  key={item.id}
+                  className="w-[220px] sm:w-[320px] h-[170px] sm:h-[180px] rounded-lg"
+                  elevation={2}
                 >
                   {/* Order details */}
-                  <div className="flex flex-col gap-5 p-3 h-[150px]">
-                    <span className="text-xs">Name:</span>
-                    <span className="text-xs">orderId: </span>
-                    <span className="text-xs">Transporter: </span>
-                    <span className="text-xs">Address:</span>
-                  </div>
+                  <div className="p-1">
+                    <CardContent className="">
+                      <div className="flex flex-col gap-2 border-b-2">
+                        <span className="font-semibold text-xs sm:text-base">
+                          Order Id: {item.orderId}
+                        </span>
+                        <span className="text-xs sm:text-base">
+                          Transporter: {item.transporter}
+                        </span>
+                        <span className="text-xs sm:text-base mb-2">
+                          Address: {item.address}
+                        </span>
+                      </div>
 
-                  <CardContent className="border-t-2">
-                    <div className="font-semibold text-xs">₹ </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="h-[200px]">
-                <Card
-                  className="w-[220px] h-[200px] rounded-lg"
-                  elevation={3}
-                  key={item.id}
-                >
-                  {/* Order details */}
-                  <div className="flex flex-col gap-5 p-3 h-[150px]">
-                    <span className="text-xs">Name:</span>
-                    <span className="text-xs">orderId: </span>
-                    <span className="text-xs">Transporter: </span>
-                    <span className="text-xs">Address:</span>
+                      <div className="  flex flex-col gap-1 mt-2">
+                        {!item.price ? (
+                          <>
+                            <span className="text-xs text-blue-500">
+                              Waiting for Transporter to respond
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="font-semibold text-base">
+                              ₹ {item.price}
+                            </span>
+                            <span className="text-xs text-blue-500">
+                              (recieved from Transporter)
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    </CardContent>
                   </div>
-
-                  <CardContent className="border-t-2">
-                    <div className="font-semibold text-xs">₹ </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="h-[200px]">
-                <Card
-                  className="w-[220px] h-[200px] rounded-lg"
-                  elevation={3}
-                  key={item.id}
-                >
-                  {/* Order details */}
-                  <div className="flex flex-col gap-5 p-3 h-[150px]">
-                    <span className="text-xs">Name:</span>
-                    <span className="text-xs">orderId: </span>
-                    <span className="text-xs">Transporter: </span>
-                    <span className="text-xs">Address:</span>
-                  </div>
-
-                  <CardContent className="border-t-2">
-                    <div className="font-semibold text-xs">₹ </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="h-[200px]">
-                <Card
-                  className="w-[220px] h-[200px] rounded-lg"
-                  elevation={3}
-                  key={item.id}
-                >
-                  {/* Order details */}
-                  <div className="flex flex-col gap-5 p-3 h-[150px]">
-                    <span className="text-xs">Name:</span>
-                    <span className="text-xs">orderId: </span>
-                    <span className="text-xs">Transporter: </span>
-                    <span className="text-xs">Address:</span>
-                  </div>
-
-                  <CardContent className="border-t-2">
-                    <div className="font-semibold text-xs">₹ </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="h-[200px]">
-                <Card
-                  className="w-[220px] h-[200px] rounded-lg"
-                  elevation={3}
-                  key={item.id}
-                >
-                  {/* Order details */}
-                  <div className="flex flex-col gap-5 p-3 h-[150px]">
-                    <span className="text-xs">Name:</span>
-                    <span className="text-xs">orderId: </span>
-                    <span className="text-xs">Transporter: </span>
-                    <span className="text-xs">Address:</span>
-                  </div>
-
-                  <CardContent className="border-t-2">
-                    <div className="font-semibold text-xs">₹ </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="h-[200px]">
-                <Card
-                  className="w-[220px] h-[200px] rounded-lg"
-                  elevation={3}
-                  key={item.id}
-                >
-                  {/* Order details */}
-                  <div className="flex flex-col gap-5 p-3 h-[150px]">
-                    <span className="text-xs">Name:</span>
-                    <span className="text-xs">orderId: </span>
-                    <span className="text-xs">Transporter: </span>
-                    <span className="text-xs">Address:</span>
-                  </div>
-
-                  <CardContent className="border-t-2">
-                    <div className="font-semibold text-xs">₹ </div>
-                  </CardContent>
                 </Card>
               </div>
             </div>
