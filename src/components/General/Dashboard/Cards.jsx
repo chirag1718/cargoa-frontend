@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@mui/material";
+import { Card, CardActions, CardContent } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CargoaApi from "../../../apis/CargoaApi";
 import { useSelector } from "react-redux";
@@ -29,7 +29,7 @@ const Cards = () => {
             >
               <div className="h-[200px]">
                 <Card
-                  className="w-[220px] sm:w-[320px] h-[170px] sm:h-[180px] rounded-lg"
+                  className="w-[220px] sm:w-[330px] h-[180px] sm:h-[180px] rounded-lg"
                   elevation={2}
                 >
                   {/* Order details */}
@@ -50,18 +50,22 @@ const Cards = () => {
                       <div className="  flex flex-col gap-1 mt-2">
                         {!item.price ? (
                           <>
-                            <span className="text-xs text-blue-500">
-                              Waiting for Transporter to respond
-                            </span>
+                            <CardActions className="flex flex-wrap   justify-start items-center">
+                              <span className="text-xs text-blue-500">
+                                Waiting for Transporter to respond
+                              </span>
+                            </CardActions>
                           </>
                         ) : (
                           <>
-                            <span className="font-semibold text-base">
-                              ₹ {item.price}
-                            </span>
-                            <span className="text-xs text-blue-500">
-                              (recieved from Transporter)
-                            </span>
+                            <CardActions className="flex flex-wrap md:justify-between">
+                              <span className="font-semibold text-base">
+                                ₹ {item.price}
+                              </span>
+                              <span className="text-[10px]  sm:text-xs  text-blue-500">
+                                (recieved from Transporter)
+                              </span>
+                            </CardActions>
                           </>
                         )}
                       </div>
