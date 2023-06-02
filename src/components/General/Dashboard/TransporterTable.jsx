@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import CargoaApi from "../../../apis/CargoaApi";
 import {
   Table,
   TableBody,
@@ -6,9 +8,19 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
 
 const TransporterTable = () => {
+  const [transporterMessages, setTransporterMessages] = useState([]);
+  // const [orderId, setOrderId] = useState("");
+  // const [price, setPrice] = useState("");
+  const getTansMessages = async () => {
+    const response = await CargoaApi.get("/message/transporter");
+    console.log(response.data);
+    setTransporterMessages(response.data);
+  };
+  useEffect(() => {
+    getTansMessages();
+  }, []);
   return (
     <div>
       <TableContainer className="inline-flex h-[450px] md:h-[500px] w-[250px] sm:w-[390px] md:w-[700px] lg:w-[900px] xl:w-[1300px]">
@@ -24,14 +36,29 @@ const TransporterTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell align="center" className="font-poppins">
-                123456789
-              </TableCell>
-              <TableCell align="center" className="font-poppins">
-                ₹ 789.456
-              </TableCell>
-            </TableRow>
+            {transporterMessages &&
+              transporterMessages.map((t) => {
+                return (
+                  <TableRow key={t._id}>
+                    <TableCell
+                      align="center"
+                      className="font-poppins"
+                      // value={orderId}
+                      // onChange={(e) => setOrderId(e.target.value)}
+                    >
+                      {t.orderId}
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      className="font-poppins"
+                      // value={price}
+                      // onChange={(e) => setPrice(e.target.value)}
+                    >
+                      {t.price ? t.price : "Waiting for response"}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
           </TableBody>
         </Table>
       </TableContainer>
