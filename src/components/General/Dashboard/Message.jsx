@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import { useSelector } from "react-redux";
 import {
   Box,
   Button,
@@ -10,12 +11,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import selectQuantity from "../selectQuantity";
 const Message = () => {
+  const userData = useSelector((state) => state.auth);
+  const userAddress = userData?.user?.address;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [to, setTo] = useState("");
   const [from, setFrom] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [address, setAddress] = useState("");
   const [transporter, setTransporter] = useState("");
   // const handleMessage = () => {
   //   // navigate("/")
@@ -116,16 +119,14 @@ const Message = () => {
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 >
-                  <MenuItem>1 </MenuItem>
-                  <MenuItem>2 </MenuItem>
-                  <MenuItem>3 </MenuItem>
+                  {selectQuantity.map((q) => (
+                    <MenuItem key={q.value} value={q.label}>
+                      {q.label}
+                    </MenuItem>
+                  ))}
                 </TextField>
                 {/* Address */}
-                <TextField
-                  label="Address"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                />
+                <TextField label="Address" value={userAddress} />
                 {/* Transporter */}
                 <TextField
                   select
@@ -133,7 +134,9 @@ const Message = () => {
                   value={transporter}
                   onChange={(e) => setTransporter(e.target.value)}
                 >
-                  <MenuItem>{}</MenuItem>
+                  {/* <MenuItem key={q.value} value={q.label}>
+                      {q.label}
+                    </MenuItem> */}
                 </TextField>
                 <Button>Send</Button>
               </Stack>
