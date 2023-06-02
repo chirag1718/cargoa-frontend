@@ -39,11 +39,15 @@ const AppRoutes = () => {
       return (
         <div>
           <Routes>
-            <Route exact path="/dashboard/:id" element={<Dashboard />} />
+            <Route
+              exact
+              path={`/dashboard/${userId}`}
+              element={<Dashboard />}
+            />
             <Route
               exact
               path="*"
-              element={<Navigate to={"/dashboard/:id"} />}
+              element={<Navigate to={`/dashboard/${userId}`} />}
             />
           </Routes>
         </div>
