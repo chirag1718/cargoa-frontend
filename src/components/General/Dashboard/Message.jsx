@@ -20,6 +20,19 @@ const Message = () => {
   // const handleMessage = () => {
   //   // navigate("/")
   // };
+  function generateOrderId() {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    const length = 20; // Length of alphanumeric code
+    let orderId = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      orderId += characters[randomIndex];
+    }
+
+    return orderId;
+  }
   return (
     <div className="">
       <span
@@ -82,18 +95,20 @@ const Message = () => {
                   width: "500px",
                 }}
               >
+                {/* OderId */}
+                <TextField label="orderId" value={generateOrderId()} />
                 {/* To */}
                 <TextField
                   label="To"
                   value={to}
                   onChange={(e) => setTo(e.target.value)}
-                ></TextField>
+                />
                 {/* From */}
                 <TextField
                   label="From"
                   value={from}
                   onChange={(e) => setFrom(e.target.value)}
-                ></TextField>
+                />
                 {/* Quantity */}
                 <TextField
                   select
@@ -110,7 +125,7 @@ const Message = () => {
                   label="Address"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                ></TextField>
+                />
                 {/* Transporter */}
                 <TextField
                   select
@@ -118,7 +133,7 @@ const Message = () => {
                   value={transporter}
                   onChange={(e) => setTransporter(e.target.value)}
                 >
-                  <MenuItem></MenuItem>
+                  <MenuItem>{}</MenuItem>
                 </TextField>
                 <Button>Send</Button>
               </Stack>
