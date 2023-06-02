@@ -56,16 +56,17 @@ const Navigation = () => {
     case "transporter":
       return (
         <>
-          <div className="bg-black w-full h-16 text-white flex items-center  justify-center mb-5 md:flex md:justify-between md:items-center md:px-10">
+          <div className="bg-black w-full h-16 text-white flex items-center justify-center mb-5 md:flex md:justify-between md:items-center md:px-10">
             <div className="">
               <span className="font-poppins text-2xl" onClick={handleHome}>
                 Cargoa
               </span>
             </div>
             <div className="hidden md:flex md:gap-10">
+              <Message />
               <span
                 className="font-poppins active:scale-95 cursor-pointer text-white"
-                // onClick={handleHome}
+                onClick={handleLogout}
               >
                 Logout
               </span>
@@ -90,7 +91,7 @@ const Navigation = () => {
                 Cargoa
               </span>
             </div>
-            <div className="hidden md:flex md:gap-10">
+            <div className="md:justify-center md:items-center ">
               {window.location.pathname.includes("signup") && (
                 <span
                   className="font-poppins active:scale-95 cursor-pointer"
