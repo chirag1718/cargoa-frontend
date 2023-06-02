@@ -6,7 +6,9 @@ import {
   Button,
   Drawer,
   FormControl,
+  // InputLabel,
   MenuItem,
+  // Select,
   Stack,
   TextField,
   Typography,
@@ -25,6 +27,8 @@ const Message = () => {
   const [quantity, setQuantity] = useState("");
   const [address, setAddress] = useState(userAddress);
   const [transporters, setTransporters] = useState([]);
+  const [transporterMessage, setTransporterMessages] = useState([]);
+  const [transporterId, setTransporterId] = useState("");
   const [orderId, setOrderId] = useState(generateOrderId());
   function generateOrderId() {
     const characters =
@@ -41,24 +45,54 @@ const Message = () => {
   }
   // Transporter
   const [price, setPrice] = useState("");
-  // get all transporters
+  // get transporter
+  const getTansporterMessages = async () => {
+    const response = await CargoaApi.get("/message/transporter");
+    // console.log(response.data);
+    setTransporterMessages(response.data);
+  };
+  // get
   const fetchData = async () => {
     const response = await CargoaApi.get("/auth/users");
     setTransporters(response.data);
+    // console.log(response.data, "clg line 58");
   };
   useEffect(() => {
     fetchData();
+    getTansporterMessages();
   }, []);
 
   // Send Message
-  const handleMessage = (e) => {
+  const handleMessage = async (e) => {
     e.preventDefault();
     try {
-      const response = CargoaApi.post(`/message/manufacturer/${userId}`);
+      const response = await CargoaApi.post(`/message/manufacturer/${userId}`, {
+        orderId,
+        to,
+        from,
+        quantity,
+        transporterId: transporterId,
+        address,
+      });
       console.log(response);
     } catch (err) {}
   };
-
+  const handleTranporterMessage = async (e) => {
+    e.preventDefault();
+    const messageId = transporterMessage.map((t) => t._id);
+    // console.log(messageId);
+    try {
+      const response = await CargoaApi.put(
+        `/message/transporter/${messageId}`,
+        {
+          price,
+        }
+      );
+      console.log(response, "transporte mesage update");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   switch (userType) {
     case "manufacturer":
       return (
@@ -125,7 +159,7 @@ const Message = () => {
                     >
                       {/* OderId */}
                       <TextField
-                        label="orderId"
+                        // label="orderId"s
                         value={orderId}
                         onChange={(e) => setOrderId(e.target.value)}
                       />
@@ -147,7 +181,6 @@ const Message = () => {
                         select
                         label="Select a quantity in TON"
                         defaultValue="1"
-                        helperText="Please select quantity"
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                       >
@@ -164,21 +197,17 @@ const Message = () => {
                         onChange={(e) => setAddress(e.target.value)}
                       />
                       {/* Transporter */}
-                      {/* <TextField
-                select
-                label="Transporter"
-                value={transporter}
-                onChange={(e) => setTransporter(e.target.value)}
-              >
-                <MenuItem></MenuItem>
-              </TextField> */}
                       <TextField
                         select
                         label="Transporter"
-                        value={transporters}
-                        onChange={(e) => setTransporters(e.target.value)}
+                        value={transporterId}
+                        onChange={(e) => setTransporterId(e.target.value)}
                       >
-                        <MenuItem></MenuItem>
+                        {transporters?.map((t) => (
+                          <MenuItem key={t._id} value={t._id}>
+                            {t.firstName}
+                          </MenuItem>
+                        ))}
                       </TextField>
 
                       <Button onClick={handleMessage}>Send</Button>
@@ -257,11 +286,27 @@ const Message = () => {
                       {/* OderId */}
                       <TextField
                         label="orderId"
+                        value={orderId}
+                        onChange={(e) => setTransporterMessages(e.target.value)}
+                      >
+                        {transporterMessage &&
+                          transporterMessage.map((t) => {
+                            return (
+                              <MenuItem key={t._id} value={t.orderId}>
+                                {t.orderId}
+                              </MenuItem>
+                            );
+                          })}
+                      </TextField>
+
+                      {/* Price */}
+                      <TextField
+                        label="Price"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                       />
 
-                      <Button onClick={handleMessage}>Send</Button>
+                      <Button onClick={handleTranporterMessage}>Send</Button>
                     </Stack>
                   </FormControl>
                 </div>
@@ -276,7 +321,3 @@ const Message = () => {
 };
 
 export default Message;
-
-// return (
-//
-// );
