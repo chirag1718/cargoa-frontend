@@ -28,31 +28,22 @@ const Navigation = () => {
       return (
         <>
           <div className="bg-black w-full h-16 text-white flex items-center justify-center mb-5 md:flex md:justify-between md:items-center md:px-10">
-            <div className="dlex justify-between gap-4">
+            <div className="flex gap-10 justify-between items-center">
               <span className="font-poppins text-2xl" onClick={handleHome}>
                 Cargoa
               </span>
-              <span className="font-poppins text-2xl" >
-                <span> </span>
-                 manufacturer
-              </span>
+              <div className="hidden md:flex text-[12px] md:text-base">
+                <p>Hello, {userData.user.role.toUpperCase()}</p>
+              </div>
             </div>
-            <div className="hidden md:flex justify-center items-center md:gap-10">
+            <div className=" md:flex justify-center items-center md:gap-10">
               <Message />
               <span
-                className="font-poppins active:scale-95 cursor-pointer text-white"
+                className="hidden md:flex font-poppins active:scale-95 cursor-pointer text-white"
                 onClick={handleLogout}
               >
                 Logout
               </span>
-              {/* {!window.location.pathname.includes("signup") && (
-                <span
-                  className="font-poppins active:scale-95 cursor-pointer"
-                  onClick={handleSignup}
-                >
-                  Signup
-                </span>
-              )} */}
             </div>
           </div>
         </>
@@ -61,18 +52,18 @@ const Navigation = () => {
       return (
         <>
           <div className="bg-black w-full h-16 text-white flex items-center justify-center mb-5 md:flex md:justify-between md:items-center md:px-10">
-            <div className="flex justify-between">
+            <div className="flex gap-10 justify-between items-center">
               <span className="font-poppins text-2xl" onClick={handleHome}>
                 Cargoa
               </span>
-              <span className="font-poppins text-2xl" >
-                transpoter
-              </span>
+              <div className="hidden md:flex text-[12px] md:text-base">
+                <p>Hello, {userData.user.role.toUpperCase()}</p>
+              </div>
             </div>
-            <div className="hidden md:flex md:gap-10 justify-center items-center">
+            <div className=" md:flex justify-center items-center md:gap-10">
               <Message />
               <span
-                className="font-poppins active:scale-95 cursor-pointer text-white"
+                className="hidden md:flex font-poppins active:scale-95 cursor-pointer text-white"
                 onClick={handleLogout}
               >
                 Logout

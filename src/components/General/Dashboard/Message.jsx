@@ -79,6 +79,7 @@ const Message = () => {
         transporterId: transporterId,
         address,
       });
+      setIsDrawerOpen(false);
       console.log(response);
     } catch (err) {}
   };
@@ -95,7 +96,7 @@ const Message = () => {
           price,
         }
       );
-      console.log(response, "transporte mesage update");
+      setIsDrawerOpen(false);
     } catch (err) {
       console.log(err);
     }
@@ -106,10 +107,10 @@ const Message = () => {
         <>
           <div className="">
             <span
-              className="flex justify-center items-center gap-2 border-white border-[1px] rounded-lg p-2 active:scale-95 cursor-pointer"
+              className="flex justify-center items-center gap-2 md:border-white md:border-[1px] rounded-lg p-2 active:scale-95 cursor-pointer sm:w-10 sm:h-10 md:w-44"
               onClick={() => setIsDrawerOpen(true)}
             >
-              Send Request
+              <span className="hidden md:flex">Send Message</span>
               <div className="">
                 <ChatBubbleOutlineIcon
                   className="text-2xl"
@@ -123,7 +124,7 @@ const Message = () => {
               onClose={() => setIsDrawerOpen(false)}
             >
               <Box
-                width="600px"
+                width="full"
                 textAlign="center"
                 role="presentation"
                 sx={{
@@ -161,8 +162,9 @@ const Message = () => {
                       sx={{
                         display: "flex",
                         gap: 3,
-                        width: "500px",
+                        width: "250px",
                       }}
+                      // className="w-[500px]"
                     >
                       {/* OderId */}
                       <TextField
@@ -232,10 +234,10 @@ const Message = () => {
         <>
           <div className="">
             <span
-              className="flex justify-center items-center gap-2 border-white border-[1px] rounded-lg p-2 active:scale-95 cursor-pointer"
+              className="flex justify-center items-center gap-2 md:border-white md:border-[1px] rounded-lg p-2 active:scale-95 cursor-pointer sm:w-10 sm:h-10 md:w-44"
               onClick={() => setIsDrawerOpen(true)}
             >
-              Send Request
+              <span className="hidden md:flex">Send Message</span>
               <div className="">
                 <ChatBubbleOutlineIcon
                   className="text-2xl"
@@ -249,7 +251,7 @@ const Message = () => {
               onClose={() => setIsDrawerOpen(false)}
             >
               <Box
-                width="600px"
+                width="full"
                 textAlign="center"
                 role="presentation"
                 sx={{
@@ -287,7 +289,7 @@ const Message = () => {
                       sx={{
                         display: "flex",
                         gap: 3,
-                        width: "500px",
+                        width: "250px",
                       }}
                     >
                       {/* OderId */}
