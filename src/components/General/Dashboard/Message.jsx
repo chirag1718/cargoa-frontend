@@ -20,14 +20,17 @@ const Message = () => {
   const userAddress = userData?.user?.address;
   const userType = userData?.user?.role;
   const userId = userData?.user?._id;
+  const transporterid = userData?.user?._id;
   // Manufacturer
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [to, setTo] = useState("");
   const [from, setFrom] = useState("");
   const [quantity, setQuantity] = useState("");
   const [address, setAddress] = useState(userAddress);
+  //👇🏻 this maps out the transporters id in transporter select element
   const [transporters, setTransporters] = useState([]);
-  const [transporterMessage, setTransporterMessages] = useState([]);
+  // 👇🏻 this is used to retrieve messageid to update the manufacturer message
+  const [transporterMessages, setTransporterMessages] = useState([]);
   const [transporterId, setTransporterId] = useState("");
   const [orderId, setOrderId] = useState(generateOrderId());
   function generateOrderId() {
@@ -47,23 +50,25 @@ const Message = () => {
   const [price, setPrice] = useState("");
   // get transporter
   const getTansporterMessages = async () => {
-    const response = await CargoaApi.get("/message/transporter");
-    // console.log(response.data);
+    const response = await CargoaApi.get(
+      `/message/transporter/${transporterid}`
+    );
+    console.log(response.data, "transporter message");
     setTransporterMessages(response.data);
   };
   // get
   const fetchData = async () => {
     const response = await CargoaApi.get("/auth/users");
     setTransporters(response.data);
-    // console.log(response.data, "clg line 58");
+    console.log(response.data, "all the trasnporter");
   };
   useEffect(() => {
     fetchData();
     getTansporterMessages();
   }, []);
 
-  // Send Message
-  const handleMessage = async (e) => {
+  // Send Message to transporter
+  const handleManufacturerMessage = async (e) => {
     e.preventDefault();
     try {
       const response = await CargoaApi.post(`/message/manufacturer/${userId}`, {
@@ -77,10 +82,12 @@ const Message = () => {
       console.log(response);
     } catch (err) {}
   };
+  // sends message to manufacturer
   const handleTranporterMessage = async (e) => {
     e.preventDefault();
-    const messageId = transporterMessage.map((t) => t._id);
-    // console.log(messageId);
+    console.log(transporterMessages);
+    const msg = transporterMessages.find((x) => x.orderId === orderId);
+    const messageId = msg._id;
     try {
       const response = await CargoaApi.put(
         `/message/transporter/${messageId}`,
@@ -210,7 +217,7 @@ const Message = () => {
                         ))}
                       </TextField>
 
-                      <Button onClick={handleMessage}>Send</Button>
+                      <Button onClick={handleManufacturerMessage}>Send</Button>
                     </Stack>
                   </FormControl>
                 </div>
@@ -285,12 +292,13 @@ const Message = () => {
                     >
                       {/* OderId */}
                       <TextField
+                        select
                         label="orderId"
                         value={orderId}
-                        onChange={(e) => setTransporterMessages(e.target.value)}
+                        onChange={(e) => setOrderId(e.target.value)}
                       >
-                        {transporterMessage &&
-                          transporterMessage.map((t) => {
+                        {transporterMessages &&
+                          transporterMessages.map((t) => {
                             return (
                               <MenuItem key={t._id} value={t.orderId}>
                                 {t.orderId}
