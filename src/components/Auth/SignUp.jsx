@@ -21,9 +21,18 @@ import { useNavigate } from "react-router-dom";
 // redux
 import { useDispatch } from "react-redux";
 // role
-import SelectRole from "../General/SelectRole";
 
 const SignUp = () => {
+  const SelectRole = [
+    {
+      value: "manufacturer",
+      label: "Manufacturer",
+    },
+    {
+      value: "transpoter",
+      label: "Tranporter",
+    },
+  ];
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [address, setAddress] = useState("");

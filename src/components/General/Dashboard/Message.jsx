@@ -13,9 +13,22 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import SelectQuantity from "../SelectQuantity";
 import CargoaApi from "../../../apis/CargoaApi";
 const Message = () => {
+  const SelectQuantity = [
+    {
+      value: "1",
+      label: "1",
+    },
+    {
+      value: "2",
+      label: "2",
+    },
+    {
+      value: "3",
+      label: "3",
+    },
+  ];
   const userData = useSelector((state) => state.auth);
   const userAddress = userData?.user?.address;
   const userType = userData?.user?.role;
