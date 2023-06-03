@@ -8,13 +8,18 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const TransporterTable = () => {
+  const userData = useSelector((state) => state.auth);
+  const transporterid = userData?.user?._id;
   const [transporterMessages, setTransporterMessages] = useState([]);
   // const [orderId, setOrderId] = useState("");
-  // const [price, setPrice] = useState("");
+  const [price, setPrice] = useState("");
   const getTansMessages = async () => {
-    const response = await CargoaApi.get("/message/transporter");
+    const response = await CargoaApi.get(
+      `/message/transporter/${transporterid}`
+    );
     console.log(response.data);
     setTransporterMessages(response.data);
   };
@@ -51,8 +56,8 @@ const TransporterTable = () => {
                     <TableCell
                       align="center"
                       className="font-poppins"
-                      // value={price}
-                      // onChange={(e) => setPrice(e.target.value)}
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
                     >
                       {t.price ? t.price : "Waiting for response"}
                     </TableCell>
