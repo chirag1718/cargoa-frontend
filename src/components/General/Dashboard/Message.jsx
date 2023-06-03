@@ -79,6 +79,7 @@ const Message = () => {
   }, []);
 
   // Send Message to transporter
+
   const handleManufacturerMessage = async (e) => {
     e.preventDefault();
     try {
@@ -91,6 +92,7 @@ const Message = () => {
         address,
       });
       setIsDrawerOpen(false);
+      window.location.reload();
     } catch (err) {}
   };
   // sends message to manufacturer
@@ -106,6 +108,7 @@ const Message = () => {
         }
       );
       setIsDrawerOpen(false);
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
