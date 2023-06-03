@@ -11,7 +11,6 @@ const Cards = () => {
       try {
         const response = await CargoaApi.get(`/message/manufacturer/${userId}`);
         setSelectedItem(response.data);
-        console.log(response.data);
       } catch (err) {
         console.log(err);
       }

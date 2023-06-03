@@ -20,7 +20,6 @@ const TransporterTable = () => {
     const response = await CargoaApi.get(
       `/message/transporter/${transporterid}`
     );
-    console.log(response.data);
     setTransporterMessages(response.data);
   };
   useEffect(() => {

@@ -44,7 +44,6 @@ const SignUp = () => {
         password,
         role,
       });
-      console.log(response);
       const res = response.data;
       dispatch(setUser(res));
       navigate("/");

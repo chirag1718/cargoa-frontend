@@ -53,14 +53,12 @@ const Message = () => {
     const response = await CargoaApi.get(
       `/message/transporter/${transporterid}`
     );
-    console.log(response.data, "transporter message");
     setTransporterMessages(response.data);
   };
   // get
   const fetchData = async () => {
     const response = await CargoaApi.get("/auth/users");
     setTransporters(response.data);
-    console.log(response.data, "all the trasnporter");
   };
   useEffect(() => {
     fetchData();
@@ -80,13 +78,11 @@ const Message = () => {
         address,
       });
       setIsDrawerOpen(false);
-      console.log(response);
     } catch (err) {}
   };
   // sends message to manufacturer
   const handleTranporterMessage = async (e) => {
     e.preventDefault();
-    console.log(transporterMessages);
     const msg = transporterMessages.find((x) => x.orderId === orderId);
     const messageId = msg._id;
     try {
