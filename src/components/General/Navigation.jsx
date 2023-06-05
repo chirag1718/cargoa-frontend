@@ -75,9 +75,12 @@ const Navigation = () => {
     default:
       return (
         <>
-          <div className="bg-black w-full h-16 text-white flex items-center  justify-center mb-5 md:flex md:justify-between md:items-center md:px-10">
+          <div className="bg-black w-full h-16 text-white flex items-center justify-around mb-5 md:flex md:justify-between md:items-center md:px-10">
             <div className="">
-              <span className="font-poppins text-2xl" onClick={handleHome}>
+              <span
+                className="font-poppins flex items-center justify-center text-2xl"
+                onClick={handleHome}
+              >
                 Cargoa
               </span>
             </div>

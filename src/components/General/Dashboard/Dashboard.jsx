@@ -35,7 +35,10 @@ const Dashboard = () => {
             <div className="flex flex-wrap justify-center gap-5 md:gap-10 rounded-xl md:rounded-xl w-[250px] sm:w-[390px] md:w-[700px] lg:w-[900px] xl:w-[1300px] h-[450px] md:h-[500px] overflow-scroll scrollbar-hide border-2 pt-5">
               <Cards />
             </div>
-            <Button className="mt-3" onClick={handleLogout}>
+            <Button
+              className="mt-3 md:hidden lg:hidden xl:hidden"
+              onClick={handleLogout}
+            >
               Logout
             </Button>
           </div>
@@ -58,7 +61,10 @@ const Dashboard = () => {
             <div className="flex flex-wrap justify-center gap-5 md:gap-10 rounded-xl md:rounded-xl w-[250px] sm:w-[390px] md:w-[700px] lg:w-[900px] xl:w-[1300px] h-[450px] md:h-[500px] overflow-scroll scrollbar-hide border-2 ">
               <TransporterTable />
             </div>
-            <Button className="mt-3" onClick={handleLogout}>
+            <Button
+              className="mt-3 md:hidden lg:hidden xl:hidden"
+              onClick={handleLogout}
+            >
               Logout
             </Button>
           </div>
