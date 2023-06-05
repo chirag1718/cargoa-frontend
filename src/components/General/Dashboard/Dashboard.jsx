@@ -1,12 +1,22 @@
 import React from "react";
 import Cards from "./Cards";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import TransporterTable from "./TransporterTable";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../redux/actions";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const userData = useSelector((state) => state.auth);
   const userType = userData?.user?.role;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    const user = localStorage.removeItem("user");
+    const token = localStorage.removeItem("auth-token");
+    dispatch(logout({ user, token }));
+    navigate("/");
+  };
   switch (userType) {
     case "manufacturer":
       return (
@@ -25,6 +35,9 @@ const Dashboard = () => {
             <div className="flex flex-wrap justify-center gap-5 md:gap-10 rounded-xl md:rounded-xl w-[250px] sm:w-[390px] md:w-[700px] lg:w-[900px] xl:w-[1300px] h-[450px] md:h-[500px] overflow-scroll scrollbar-hide border-2 pt-5">
               <Cards />
             </div>
+            <Button className="mt-3" onClick={handleLogout}>
+              Logout
+            </Button>
           </div>
         </>
       );
@@ -45,6 +58,9 @@ const Dashboard = () => {
             <div className="flex flex-wrap justify-center gap-5 md:gap-10 rounded-xl md:rounded-xl w-[250px] sm:w-[390px] md:w-[700px] lg:w-[900px] xl:w-[1300px] h-[450px] md:h-[500px] overflow-scroll scrollbar-hide border-2 ">
               <TransporterTable />
             </div>
+            <Button className="mt-3" onClick={handleLogout}>
+              Logout
+            </Button>
           </div>
         </>
       );

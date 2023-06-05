@@ -11,7 +11,7 @@ const Navigation = () => {
   const userType = userData?.user?.role;
   const dispatch = useDispatch();
   const handleHome = () => {
-    navigate("/");
+    navigate("/dashboard");
   };
   const handleSignup = () => {
     navigate("/signup");
@@ -21,7 +21,7 @@ const Navigation = () => {
     const user = localStorage.removeItem("user");
     const token = localStorage.removeItem("auth-token");
     dispatch(logout({ user, token }));
-    navigate("/dashboard");
+    navigate("/");
   };
   switch (userType) {
     case "manufacturer":
